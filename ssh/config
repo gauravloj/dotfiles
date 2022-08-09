@@ -1,0 +1,15 @@
+# clone git repo using "git clone git@ogit/blah/blah.git"
+Host ogit github.com
+  HostName github.com
+  AddKeysToAgent yes
+  # UseKeychain yes
+  IdentityFile ~/.ssh/id_ogit_rsa
+  User cgit
+
+# clone git repo using "git clone git@mgit/blah/blah.git"
+Host mgit github.com
+  HostName github.com
+  AddKeysToAgent yes
+  # UseKeychain yes
+  IdentityFile ~/.ssh/id_mgit_rsa
+  User digit

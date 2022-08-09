@@ -8,9 +8,7 @@ alias pvim='pipenv run nvim'
 alias rmrf='rm -rf'
 alias ahncd="cd /Users/mihawk/Desktop/open-projects/ahn_web"
 alias leetcd="cd /Users/mihawk/Desktop/pipenvtest/leetcode"
-alias mezshcd="cd /Users/mihawk/.oh-my-zsh/custom"
 alias sarcd="cd /Users/mihawk/Desktop/pipenvtest/webip"
-alias neocd="cd /Users/mihawk/.config/nvim"
 alias mansearch="man -K"
 alias say="say -v Alice"
 alias dotfilescd="cd /Users/mihawk/workshop/dotfiles"
@@ -26,8 +24,7 @@ alias chromsiv='"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" -
 alias chrompoc='"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --profile-directory="Default"'
 
 # Directory shorthand
-hash -d neoconfig="/Users/mihawk/.config/nvim"
 hash -d sarweb="/Users/mihawk/Desktop/pipenvtest/webip"
 hash -d ahn="/Users/mihawk/Desktop/open-projects/ahn_web"
 hash -d leet="/Users/mihawk/Desktop/pipenvtest/leetcode"
-hash -d mezsh="/Users/mihawk/.oh-my-zsh/custom"
+hash -d dotfiles="/Users/mihawk/workshop/dotfiles"
