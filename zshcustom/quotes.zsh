@@ -1,2 +1,2 @@
-quote | cowthink
+quote 
 

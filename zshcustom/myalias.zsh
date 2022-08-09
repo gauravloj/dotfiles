@@ -16,6 +16,14 @@ alias say="say -v Alice"
 alias dotfilescd="cd /Users/mihawk/workshop/dotfiles"
 # alias homeaddr='echo "home address" | pbcopy'
 
+# chrome alias
+alias chromtech='"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --profile-directory="Profile 13"'
+alias chromvaa='"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --profile-directory="Profile 1"'
+alias chromnaa='"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --profile-directory="Profile 5"'
+alias chrommk='"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --profile-directory="Profile 7"'
+alias chromitb='"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --profile-directory="Profile 14"'
+alias chromsiv='"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --profile-directory="Profile 15"'
+alias chrompoc='"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --profile-directory="Default"'
 
 # Directory shorthand
 hash -d neoconfig="/Users/mihawk/.config/nvim"
