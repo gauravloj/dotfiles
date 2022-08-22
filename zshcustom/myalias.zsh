@@ -1,11 +1,17 @@
 # Useful alias
 alias selia='alias | grep '
 alias ggpullr='git pull --rebase origin main'
-alias jupyter='pipenv run jupyter notebook'
+alias jupyter='pipenv run jupyter lab'
 alias pyrun='pipenv run'
 alias pyshell='pipenv shell'
 alias pvim='pipenv run nvim'
 alias rmrf='rm -rf'
+alias h='history'
+alias hs='history | grep'
+alias hsi='history | grep -i'
+alias hsbuilt='builtin history'
+
+# most used projects
 alias ahncd="cd /Users/mihawk/Desktop/open-projects/ahn_web"
 alias leetcd="cd /Users/mihawk/Desktop/pipenvtest/leetcode"
 alias sarcd="cd /Users/mihawk/Desktop/pipenvtest/webip"
