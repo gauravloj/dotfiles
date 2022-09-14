@@ -1,0 +1,4 @@
+1. Calendar - `cal`
+2. `say -v '?' | grep '\ben_' | cut -d' ' -f1 | xargs -n 1 say "hello, how are you" -v` : test each voice type
+3. `sudo arp-scan --localnet` - scan local network for devices
+

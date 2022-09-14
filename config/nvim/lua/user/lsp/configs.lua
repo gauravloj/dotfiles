@@ -8,16 +8,18 @@ local lspconfig = require("lspconfig")
 -- check https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- for list of server configurations
 local servers = {
-	"jsonls",
-	"sumneko_lua",
-	"pyright",
-	"eslint",
+	"bashls",
 	"dockerls",
+	"eslint",
 	"html",
+	"jsonls",
 	"marksman",
+	"pyright",
+	"sumneko_lua",
 	"tailwindcss",
 	"terraformls",
 	"tsserver",
+	"vimls",
 	"yamlls",
 }
 

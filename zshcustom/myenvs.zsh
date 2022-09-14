@@ -1,4 +1,6 @@
 HISTSIZE=2000
+export EDITOR=/usr/local/bin/nvim
+set -o vi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

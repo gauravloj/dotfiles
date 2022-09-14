@@ -1,3 +1,4 @@
 zshcustom/toignore.zsh
 zshcustom/ahn-config.zsh
 vimconfig/bundle/*
+muttrc/*

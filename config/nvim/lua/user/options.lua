@@ -20,7 +20,7 @@ local options = {
 	numberwidth = 4, -- set number column width to 2 {default 4}
 	pumblend = 0, -- Transparancy for pop up menu
 	pumheight = 10, -- pop up menu height
-	relativenumber = false, -- set relative numbered lines
+	relativenumber = true, -- set relative numbered lines
 	scrolloff = 4, -- is one of my fav
 	shiftwidth = 2, -- the number of spaces inserted for each indentation
 	showmode = false, -- we don't need to see things like -- INSERT -- anymore
@@ -33,11 +33,11 @@ local options = {
 	splitright = true, -- force all vertical splits to go to the right of current window
 	swapfile = false, -- creates a swapfile
 	tabstop = 2, -- insert 2 spaces for a tab
-	-- termguicolors = true, -- set term gui colors (most terminals support this)
 	timeoutlen = 1000, -- time to wait for a mapped sequence to complete (in milliseconds)
 	undofile = true, -- enable persistent undo
 	updatetime = 300, -- faster completion (4000ms default)
 	wrap = true, -- display lines as one long line
+	-- wrapscan = false, -- don't wrap around the search after search the last item in the buffer
 	writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 }
 
@@ -46,7 +46,7 @@ vim.opt.diffopt:append("vertical") -- open diff in vertical split
 
 -- vim.notify("snsha: " .. os.getenv("TERM_PROGRAM"))
 
--- vim.cmd("echo $TERM_PROGRAM")
+vim.cmd("echo $TERM_PROGRAM")
 if os.getenv("TERM_PROGRAM") == "Apple_Terminal" then
 	vim.opt.termguicolors = false
 else
