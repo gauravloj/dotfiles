@@ -1,0 +1,39 @@
+Everyday script commands
+
+1. info bash
+2. time
+3. declare -x (-l for lowercase, -u for uppercase, -r for readonly, -a for array, -A for map)
+4. https://grml.org/zsh/zsh-lovers.html
+5. enable : list of shell builtins
+6. compgen -k : list of shell keywords
+7. typeset : declaring a variable as local (-i for integer, )
+8. read var1 var2 : read first word in var1 and remaining string in var2
+9. while … do … done [ < input file] : while loop
+10. for <var> in <list> do … done : for loop
+11. seq : print a range of numbers
+12. $(<filename) : output file content
+13. x=abc; abc=def; echo ${!x} -> variable indirection using !
+14. Variable operators
+    1. ${var:-defaultvalue} -> if var is unset, then default value is returned. Note ‘:-‘ is the operator used
+    2. ${var:=defaultvalue} -> if var is unset, then default value is assigned to var and then return the defaultvalue. Note ‘:=‘ is the operator used
+    3. ${var:?} -> if var is unset, display error and exit
+    4. ${var:+} -> return nothing is unset, else return value
+    5. ${var:<num>} -> return the string starting from the ‘num’ index
+    6. ${var:<numstart>:<requiredlength>} -> return the string starting from the ‘numstart’ index and ‘requiredlength’ characters
+    7. ${#var} -> length of the value of variable var
+    8. ${var#pre}  -> remove prefix from the value and return
+    9. ${var%post}  -> remove suffix from the value and return
+    10. ${var/old/new} -> replace first occurance of old with new in the variable
+    11. ${var//old/new} -> replace all occurance of old with new in the variable
+15. coproc : starting a script as coprocess. This script read from standard input and writes to standard output
+16. bash options, can be set using ‘set’ command. Eg. set -x
+    1. bash -x -> echo commands before executing
+    2. bash -n -> chech script for syntax
+    3. bash -u -> error on using an unset variable
+17. trap -> Captures the OS signals. 
+18. kll -l -> list all signals
+19. eval -> runs string as command
+20. getopt -> reads command line argument
+21. [ … ], [[ … ]] -> test expressions
+22. read, select -> to read input and select from a choice
+23. https://www.thegeekstuff.com/best-of-the-blog/ 

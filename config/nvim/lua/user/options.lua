@@ -23,6 +23,7 @@ local options = {
 	relativenumber = true, -- set relative numbered lines
 	scrolloff = 4, -- is one of my fav
 	shiftwidth = 2, -- the number of spaces inserted for each indentation
+	-- showcmd = true,
 	showmode = false, -- we don't need to see things like -- INSERT -- anymore
 	-- showtabline = 2,                         -- always show tabs
 	sidescrolloff = 4,
@@ -36,13 +37,18 @@ local options = {
 	timeoutlen = 1000, -- time to wait for a mapped sequence to complete (in milliseconds)
 	undofile = true, -- enable persistent undo
 	updatetime = 300, -- faster completion (4000ms default)
+	-- wildemenu = true,
 	wrap = true, -- display lines as one long line
 	-- wrapscan = false, -- don't wrap around the search after search the last item in the buffer
 	writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 }
 
 vim.opt.shortmess:append("c")
+-- vim.opt.shortmess:append("cmrw")
 vim.opt.diffopt:append("vertical") -- open diff in vertical split
+
+-- statusline settings
+-- vim.opt.statusline =
 
 -- vim.notify("snsha: " .. os.getenv("TERM_PROGRAM"))
 

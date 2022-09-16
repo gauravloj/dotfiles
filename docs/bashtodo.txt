@@ -1,0 +1,55 @@
+Everyday Bash commands
+
+1. nl : cat with line numbers
+2. history zsh expansion: 
+Word designators indicate the words of the command line that will be included in a history reference. What follows is a quick reference of the available designators: 
+* ^: The first argument.  
+* $: The last argument.  
+* %: The most recent match for a given word.  
+* x-y: A range of words. Negative indexes like -i mean 0-i; thus,  -1 would mean "the penultimate entry".  
+* *: All the arguments. Return null for events with just one word.  Note that a % word designator will only work when used as !%, !:%, or !?str?:%; anything else and you will be greeted with an error.  For a more in-depth look at word designators and history expansion semantics, please refer to man zshexpn, particularly the section titled "HISTORY EXPANSION".  
+
+
+2. Skip alias
+There are a few ways by which you can prevent the shell from executing an alias that is called just as another command. Single-quoted commands and commands prepended with a backslash (\) as well as those typed as relative or absolute paths are not treated as aliases by the shell. 
+For example, you could use either of the following if you wish to avoid a call to an alias: % 'ls' % \ls 
+
+3. bindkey bindkey -e : emacs,  bindkey -v (or -a) : vi insert/command mode bindkey -l - display available key bindings bindkey -lL - display available key bindings with their commands bindkey -L - Display list of current key maps 
+4. forward history search ctrl+S
+
+5. terminal key bindings
+
+Ctrl + A	Moves the cursor to the beginning of the line
+Ctrl + E	Moves the cursor to the end of the line
+Ctrl + W	Deletes the whole word backwards from the cursor location
+Esc + B	Moves the cursor backwards one word
+Esc + F	Moves the cursor forward one word
+Ctrl + D	Deletes a character (moves forward) / lists completions / logs out
+Ctrl + U	Deletes the whole line
+Ctrl + K	Kills (or deletes) until the end of the line
+Esc + D	Deletes one word on the right of the cursor
+Esc + Backspace	Deletes one word on the left of the cursor
+Ctrl + Y	Yanks the last killed word
+Esc + Y	Switches the last yanked word
+Ctrl + T	Transposes two characters
+Esc + T	Transposes two words
+Ctrl + R	Incremental search backwards
+Ctrl + S	Incremental search forwards (automatically enables NO_FLOW_ CONTROL option)
+
+6. Esc-x -> execute mode (Ctrl+G to close execute mode)
+7. Esc-x -> where-is -> capitalize-word : go to ‘Where is” mode and search about ‘capitalize-word’ feature
+8. zle widgets :  - autoload -U tetris - zle -N tetris (create a new widget) - bindkey ‘\et’ tetris
+9. https://grml.org/zsh/zsh-lovers.html 
+10. Esc+<enter> : multiline editing
+11. You can make the shell output the raw string by supplying the (q) argument: 
+            % string="This is a *string* with various 'special'
+            characters"
+            % echo ${(q)string}
+            > this\ is\ a\ \*string\*\ with\ various\ \'special\'\
+            characters
+12. xargs
+13. exec N> filename : open filename for output at as Nth file descriptor
+14. lsof - open files
+15. case expression in pattern1 )    command list ;; pattern 2 )    command list ;;  esac
+16. mail
+17. `< mutt.txt`

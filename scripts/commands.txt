@@ -1,0 +1,2 @@
+# list common ports
+nmap --top-ports 1000 localhost -v -oG -

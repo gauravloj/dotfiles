@@ -20,6 +20,7 @@ alias sarcd="cd /Users/mihawk/Desktop/pipenvtest/webip/ipinjp/"
 alias mansearch="man -K"
 alias say="say -v  Veena"
 alias dotfilescd="cd /Users/mihawk/workshop/dotfiles"
+alias bookscd="cd /Users/mihawk/Desktop/bakup/desktop/learning/"
 # alias homeaddr='echo "home address" | pbcopy'
 
 # chrome alias
