@@ -6,3 +6,10 @@ space2uscore() {
   zmv -v '*' '${f// /_}'
   unfunction zmv
 }
+
+# rename all files in current folder to lower case
+renamelower(){
+  autoload -U zmv
+  zmv -v '(*)' '${(L)1}'
+  unfunction zmv
+}

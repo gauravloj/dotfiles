@@ -1,7 +1,7 @@
 
 # alias
-alias optemplist='op item template list'
-alias optempget='op item template get'
+# alias optemplist='op item template list'
+# alias optempget='op item template get'
 
 # Functions
 # Get specific field for an item
@@ -12,4 +12,4 @@ alias optempget='op item template get'
 # op item get -
 
 # commands
-eval "$(op completion zsh)"; compdef _op op
+# eval "$(op completion zsh)"; compdef _op op

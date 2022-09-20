@@ -52,14 +52,18 @@ vim.opt.diffopt:append("vertical") -- open diff in vertical split
 
 -- vim.notify("snsha: " .. os.getenv("TERM_PROGRAM"))
 
-vim.cmd("echo $TERM_PROGRAM")
+-- vim.cmd("echo $TERM_PROGRAM")
+-- vim.schedule(function()
+-- 	vim.cmd("r !echo $TERM_PROGRAM")
+-- end)
 if os.getenv("TERM_PROGRAM") == "Apple_Terminal" then
 	vim.opt.termguicolors = false
 else
-	vim.opt.termguicolors = true
+	vim.opt_global.termguicolors = true
 end
 
 for k, v in pairs(options) do
+	-- vim.cmd("r !echo " .. k .. ":" .. tostring(v))
 	vim.opt[k] = v
 end
 

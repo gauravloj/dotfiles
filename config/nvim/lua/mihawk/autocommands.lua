@@ -4,7 +4,7 @@ vim.cmd([[
     autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR> 
     autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200}) 
     autocmd BufWinEnter * :set formatoptions-=cro
-    autocmd FileType qf set nobuflisted
+    autocmd FileType qf set nobuflisted nowrap
   augroup end
 
   augroup _git
@@ -34,8 +34,13 @@ vim.cmd([[
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
   augroup end
 
+  augroup _zsh
+    autocmd!
+    autocmd BufWinEnter *.zsh :set filetype=sh
+  augroup en
+
   augroup _ahn
     autocmd!
-    autocmd VimEnter */ahn_web/* nnoremap <C-CR> :!make buildprod<CR>
+    autocmd VimEnter */ahn_web/**,*/ahn_front/** nnoremap <C-CR> <CMD>!make buildprod<CR>
   augroup end
 ]])

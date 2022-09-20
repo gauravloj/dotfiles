@@ -1,21 +1,21 @@
-require("user.options")
-require("user.keymaps")
-require("user.plugins")
-require("user.colorscheme")
-require("user.cmp")
-require("user.lsp")
-require("user.telescope")
-require("user.treesitter")
-require("user.autopairs")
-require("user.comment")
-require("user.gitsigns")
-require("user.nvim-tree")
--- require "user.bufferline"
--- require "user.lualine"
--- require "user.toggleterm"
--- require "user.project"
--- require "user.impatient"
-require("user.indentline")
--- require "user.alpha"
-require("user.whichkey")
-require("user.autocommands")
+require("mihawk.options")
+require("mihawk.keymaps")
+require("mihawk.plugins")
+require("mihawk.colorscheme")
+require("mihawk.cmp")
+require("mihawk.lsp")
+require("mihawk.telescope")
+require("mihawk.treesitter")
+require("mihawk.autopairs")
+require("mihawk.comment")
+require("mihawk.gitsigns")
+require("mihawk.nvim-tree")
+-- require "mihawk.bufferline"
+-- require "mihawk.lualine"
+-- require "mihawk.toggleterm"
+-- require "mihawk.project"
+-- require "mihawk.impatient"
+require("mihawk.indentline")
+-- require "mihawk.alpha"
+require("mihawk.whichkey")
+require("mihawk.autocommands")
