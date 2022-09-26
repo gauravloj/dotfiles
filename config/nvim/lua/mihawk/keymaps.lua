@@ -1,6 +1,6 @@
 local opts = { noremap = true, silent = true }
 
-local term_opts = { silent = true }
+-- local term_opts = { silent = true }
 
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
@@ -27,6 +27,14 @@ keymap("n", "Q", "@@", opts)
 
 -- copy till line end with Y
 keymap("n", "Y", "y$", opts)
+keymap("n", "s", '"_d', opts)
+keymap("n", "S", '"_c', opts)
+keymap("n", "<leader>yd", '"*d', opts)
+keymap("n", "<leader>yc", '"*c', opts)
+keymap("n", "<leader>yy", '"*y', opts)
+keymap("n", "<leader>yp", '"*p', opts)
+keymap("n", "<leader>yP", '"*P', opts)
+keymap("n", "<leader>yY", '"*y$', opts)
 
 -- Avoid using arrow keys
 keymap("n", "<Up>", "<Nop>", opts)
@@ -89,3 +97,8 @@ keymap("n", "<C-p>", "<CMD>cprevious<CR>", opts)
 -- keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
 -- keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
 -- keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
+
+-- Shrug ¯\_(ツ)_/¯
+
+-- keymap("i", ",shrug", "¯\\_(ツ)_/¯", opts)
+vim.cmd([[abbreviate shrug ¯\_(ツ)_/¯]])
