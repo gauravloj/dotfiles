@@ -80,10 +80,10 @@ end
 
 M.on_attach = function(client, bufnr)
 	-- vim.notify(client.name .. " starting...")
-	local server_names = { "tsserver", "jsonls", "sumneko_lua", "html" }
+	local server_names = { "tsserver", "jsonls", "lua_ls", "html" }
 	for index, value in ipairs(server_names) do
 		if client.name == value then
-			client.resolved_capabilities.document_formatting = false
+			client.server_capabilities.document_formatting = false
 			break
 		end
 	end
@@ -102,6 +102,6 @@ if not status_ok then
 	return
 end
 
-M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
 return M

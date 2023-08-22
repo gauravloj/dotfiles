@@ -1,5 +1,5 @@
 1. Calendar - `cal`
 2. `say -v '?' | grep '\ben_' | cut -d' ' -f1 | xargs -n 1 say "hello, how are you" -v` : test each voice type
 3. `sudo arp-scan --localnet` - scan local network for devices
-4. `mutool convert -F pdf -o refcard.pdf opl.pdf 437-504` - extrace pages from pdf
+4. `mutool convert -F pdf -o refcard.pdf opl.pdf 437-504` - extract pages from pdf
 

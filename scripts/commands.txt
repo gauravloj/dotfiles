@@ -1,2 +1,8 @@
 # list common ports
 nmap --top-ports 1000 localhost -v -oG -
+
+# rename file with one digit lower
+ls -1 | sed 's/level//' | awk '{print "mv " "level" $1 " level" $1-1}' | bash
+
+# count characters of input text 
+cat cipher1 | sed 's/ //g' | grep -o . | sort | uniq -c | sort -r
