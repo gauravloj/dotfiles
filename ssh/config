@@ -13,3 +13,41 @@ Host mgit github.com
   # UseKeychain yes
   IdentityFile ~/.ssh/id_mgit_rsa
   User digit
+
+# overthewire wargames
+# ssh -l bandit0 bandit
+Host bandit bandit.labs.overthewire.org
+  HostName bandit.labs.overthewire.org
+  Port 2220
+
+Host leviathan 
+  HostName leviathan.labs.overthewire.org
+  Port 2223
+
+Host narnia 
+  HostName narnia.labs.overthewire.org
+  Port 2226
+
+Host behemoth
+  HostName behemoth.labs.overthewire.org
+  Port 2221
+
+Host krypton
+  HostName krypton.labs.overthewire.org
+  Port 2231
+
+Host utumno
+  HostName utumno.labs.overthewire.org
+  Port 2227
+
+Host maze
+  HostName maze.labs.overthewire.org
+  Port 2225
+
+Host vortex
+  HostName vortex.labs.overthewire.org
+  Port 5842
+
+Host manpage
+  HostName manpage.labs.overthewire.org
+  Port 2224

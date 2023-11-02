@@ -66,6 +66,7 @@ return packer.startup(function(use)
 	-- use("rockerBOO/boo-colorscheme-nvim")
 	use("navarasu/onedark.nvim")
 	-- use 'AlphaTechnolog/onedarker.nvim'
+	use({ "catppuccin/nvim", as = "catppuccin" })
 
 	-- clojure packages
 	-- use("guns/vim-sexp")
@@ -74,7 +75,11 @@ return packer.startup(function(use)
 	--[[ use("luochen1990/rainbow") ]]
 
 	-- debugging
-	-- use("mfussenegger/nvim-dap")
+	use("mfussenegger/nvim-dap")
+	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
+	use("theHamsta/nvim-dap-virtual-text")
+	use("nvim-telescope/telescope-dap.nvim")
+	use("mfussenegger/nvim-dap-python")
 
 	-- cmp plugins
 	use("hrsh7th/nvim-cmp") -- The completion plugin
@@ -94,6 +99,7 @@ return packer.startup(function(use)
 	use("williamboman/nvim-lsp-installer") -- simple to use language server installer
 	-- use("tamago324/nlsp-settings.nvim") -- language server settings defined in json for
 	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+	use("github/copilot.vim")
 
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")

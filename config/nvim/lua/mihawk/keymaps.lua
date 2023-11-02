@@ -29,6 +29,8 @@ keymap("n", "Q", "@@", opts)
 keymap("n", "Y", "y$", opts)
 keymap("n", "s", '"_d', opts)
 keymap("n", "S", '"_c', opts)
+keymap("n", "x", '"_x', opts)
+keymap("n", "X", '"_X', opts)
 keymap("n", "<leader>yd", '"*d', opts)
 keymap("n", "<leader>yc", '"*c', opts)
 keymap("n", "<leader>yy", '"*y', opts)
@@ -86,6 +88,16 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- quickfix file navigation
 keymap("n", "<C-n>", "<CMD>cnext<CR>", opts)
 keymap("n", "<C-p>", "<CMD>cprevious<CR>", opts)
+
+-- debugging
+
+keymap("n", "<leader>dc", ":lua require('dap').continue()<CR>", opts)
+keymap("n", "<leader>do", ":lua require('dap').step_over()<CR>", opts)
+keymap("n", "<leader>di", ":lua require('dap').step_into()<CR>", opts)
+keymap("n", "<leader>dO", ":lua require('dap').step_out()<CR>", opts)
+keymap("n", "<leader>db", ":lua require('dap').toggle_breakpoint()<CR>", opts)
+keymap("n", "<leader>dB", ":lua require('dap').set_breakpoint(vim.fn.input('Breakpoint Condition: '))<CR>", opts)
+keymap("n", "<leader>dr", ":lua require('dap').repl.open()<CR>", opts)
 
 -- Terminal --
 -- Better terminal navigation

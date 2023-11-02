@@ -47,3 +47,13 @@ free(){
   # On mac
   # security find-generic-password -ga <SSID>
 # }
+
+addalert(){
+  if [ $# -ne 3 ]; 
+  then 
+    echo "Usage: addalert <alert title> <alert message> <waittime>"
+    return 3
+  fi
+  cmdd="display alert \"$1\" message \"$2\""
+  sleep $3 && osascript -e $cmdd
+}

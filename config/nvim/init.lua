@@ -14,8 +14,13 @@ require("mihawk.nvim-tree")
 -- require "mihawk.lualine"
 -- require "mihawk.toggleterm"
 -- require "mihawk.project"
-require "mihawk.impatient"
+require("mihawk.impatient")
 -- require("mihawk.indentline")
 -- require "mihawk.alpha"
+require("mihawk.debug")
 require("mihawk.whichkey")
 require("mihawk.autocommands")
+-- vim.treesitter.query.set("javascript", "injections", "")
+-- vim.treesitter.query.set("typescript", "injections", "")
+-- vim.treesitter.query.set("tsx", "injections", "")
+-- vim.treesitter.query.set("lua", "injections", "")

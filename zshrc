@@ -83,7 +83,7 @@ source $ZSH/oh-my-zsh.sh
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+#   export EDITOR='nvim'
 # fi
 
 # Compilation flags
@@ -102,5 +102,5 @@ source $ZSH/oh-my-zsh.sh
 # ssh-add ~/.ssh/id_maingithub_rsa &> /dev/null
 # ssh-add ~/.ssh/id_opentech_ed25519 &> /dev/null
 
-autoload -U +X bashcompinit && bashcompinit
+autoload -U +X bashcompinit && bashcompinit && unfunction bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
