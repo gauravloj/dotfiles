@@ -99,6 +99,9 @@ keymap("n", "<leader>db", ":lua require('dap').toggle_breakpoint()<CR>", opts)
 keymap("n", "<leader>dB", ":lua require('dap').set_breakpoint(vim.fn.input('Breakpoint Condition: '))<CR>", opts)
 keymap("n", "<leader>dr", ":lua require('dap').repl.open()<CR>", opts)
 
+-- run tests
+keymap("n", ",t", ":wa | !./run_tests.sh<CR>", opts)
+
 -- Terminal --
 -- Better terminal navigation
 -- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
