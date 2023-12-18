@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -ex
 
 # Check and install homebrew
 if ! which brew > /dev/null; then
@@ -19,13 +19,14 @@ for package in $packagelist; do
     echo "$package already installed"
   else
     echo "Installing $package..."
-    # brew install $package
+    brew install $package
   fi
 done
 
 # Setup config filed
 SRC_REPO='https://github.com/gauravloj/dotfiles.git'
 clonepath=$(mktemp -d)
+echo "Cloning $SRC_REPO to $clonepath"
 git clone $SRC_REPO $clonepath
 cd $clonepath
 cp -r config ~/.config
@@ -39,4 +40,5 @@ cp -r vimconfig ~/.vim
 # cp -r zshcustom ~/.oh-my-zsh/custom
 
 # remove temp files
+echo "Removing temp files"
 rm -rf $clonepath
