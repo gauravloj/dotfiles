@@ -10,7 +10,8 @@ fi
 
 
 # Check and install relevant packages
-packagelist='alacritty ls git zsh tmux vim neovim python3 visual-studio-code kitty'
+packagelist='alacritty ls git zsh tmux vim neovim python3 visual-studio-code kitty node'
+optional_packages='ansible docker doctl fzf gh irssi jq mupdf ncurses openssl@1.1 ripgrep overmind'
 
 for package in $packagelist; do
 
