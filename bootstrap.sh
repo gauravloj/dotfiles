@@ -37,3 +37,6 @@ cp -r vimconfig ~/.vim
 # sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 # cp zshrc ~/.zshrc
 # cp -r zshcustom ~/.oh-my-zsh/custom
+
+# remove temp files
+rm -rf $clonepath
