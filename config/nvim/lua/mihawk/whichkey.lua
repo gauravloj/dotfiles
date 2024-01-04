@@ -88,7 +88,6 @@ local mappings = {
 		"<cmd>Telescope buffers<cr>",
 		"Buffers",
 	},
-	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 	["w"] = { "<cmd>w<CR>", "Save" },
 	["q"] = { "<cmd>q<CR>", "Quit" },
 	["c"] = { "<cmd>bdelete<CR>", "Buffer Delete" },

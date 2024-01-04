@@ -66,7 +66,7 @@ return packer.startup(function(use)
 	-- use("rockerBOO/boo-colorscheme-nvim")
 	use("navarasu/onedark.nvim")
 	-- use 'AlphaTechnolog/onedarker.nvim'
-	use({ "catppuccin/nvim", as = "catppuccin" })
+	-- use({ "catppuccin/nvim", as = "catppuccin" })
 
 	-- clojure packages
 	-- use("guns/vim-sexp")

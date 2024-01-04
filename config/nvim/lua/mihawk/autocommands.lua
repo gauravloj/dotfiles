@@ -29,11 +29,6 @@ vim.cmd([[
     autocmd BufWritePre * lua vim.lsp.buf.format {async = false}
   augroup end
 
-  augroup _alpha
-    autocmd!
-    autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
-  augroup end
-
   augroup _zsh
     autocmd!
     autocmd BufWinEnter *.zsh :set filetype=sh
