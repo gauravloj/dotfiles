@@ -17,9 +17,10 @@ alias say="say -v  Veena"
 alias wifi="networksetup -setairportpower en0"
 alias wificonfig="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport"
 alias findwifipass="sudo security find-generic-password -ga"
+alias python="python3"
 
 # -P acts like shred
-alias rm='rm -P'
+# alias rm='rm -P'
 # alias sshvisual='ssh -T git@github.com -o VisualHostKey=yes'
 # alias addagent='eval $(ssh-agent -s) && ssh-add ~/.ssh/id_rsa'
 
@@ -38,8 +39,8 @@ alias ghprsquash="gh pr merge --squash" # merge active pull request for current 
 
 
 # most used projects
-alias ahncd="cd /Users/mihawk/Desktop/open-projects/ahn_web"
-alias dotfilescd="cd /Users/mihawk/workshop/dotfiles"
+alias ahncd="cd $HOME/Desktop/open-projects/ahn_web"
+alias dotfilescd="cd $HOME/workshop/dotfiles"
 
 
 # alias homeaddr='echo "home address" | pbcopy'

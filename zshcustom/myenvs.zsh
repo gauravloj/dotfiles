@@ -1,5 +1,5 @@
 HISTSIZE=2000
-export EDITOR=/usr/local/bin/nvim
+export EDITOR="$(brew --prefix)/bin/nvim"
 set -o vi
 
 export NVM_DIR="$HOME/.nvm"

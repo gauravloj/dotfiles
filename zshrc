@@ -70,6 +70,8 @@ ZSH_CUSTOM=/Users/mihawk/workshop/dotfiles/zshcustom
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git web-search macos copybuffer jsontools docker encode64 urltools)
 
+export ZSH_CUSTOM=$HOME/workshop/dotfiles/zshcustom/
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
