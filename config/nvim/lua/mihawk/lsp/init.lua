@@ -5,4 +5,4 @@ end
 
 require "mihawk.lsp.configs"
 require("mihawk.lsp.handlers").setup()
-require "mihawk.lsp.null-ls"
+-- require "mihawk.lsp.null-ls"

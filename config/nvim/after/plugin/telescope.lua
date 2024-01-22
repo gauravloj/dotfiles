@@ -3,11 +3,17 @@ if not status_ok then
   return
 end
 
+local status_ok_lga, lga_actions  = pcall(require, "telescope-live-grep-args.actions")
+if not status_ok_lga then
+  return
+end
+
+
+
 local actions = require "telescope.actions"
 
 telescope.setup {
   defaults = {
-
     prompt_prefix = " ",
     selection_caret = " ",
     path_display = { "smart" },
@@ -41,11 +47,11 @@ telescope.setup {
         ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
         ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
         ["<C-l>"] = actions.complete_tag,
-        ["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
       },
 
       n = {
         ["<esc>"] = actions.close,
+        ["<C-c>"] = actions.close,
         ["<CR>"] = actions.select_default,
         ["<C-x>"] = actions.select_horizontal,
         ["<C-v>"] = actions.select_vertical,
@@ -87,10 +93,41 @@ telescope.setup {
     -- builtin picker
   },
   extensions = {
-    -- Your extension configuration goes here:
-    -- extension_name = {
-    --   extension_config_key = value,
-    -- }
-    -- please take a look at the readme of the extension you want to configure
+    live_grep_args = {
+      -- Below code doesn't belong inside this table, but adding here for reference
+      -- keymap.set("n", "<leader>gc", live_grep_args_shortcuts.grep_word_under_cursor)
+      auto_quoting = true, -- enable/disable auto-quoting
+      -- define mappings, e.g.
+      mappings = { -- extend mappings
+        i = {
+          ["<C-k>"] = lga_actions.quote_prompt(),
+          -- ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+        },
+      },
+    }
   },
 }
+
+
+-- Setting keymaps
+local status_ok, builtin = pcall(require, "telescope.builtin")
+if not status_ok then
+  return
+end
+
+
+local opts = { noremap = true, silent = true }
+
+vim.keymap.set('n', '<leader>ff', builtin.find_files, opts)
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, opts)
+vim.keymap.set('n', '<leader>fb', builtin.buffers, opts)
+
+
+-- Set keymap to search under cursor
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>/",
+  "<CMD>lua require('telescope-live-grep-args.shortcuts').grep_word_under_cursor()<CR>",
+ opts 
+)
+

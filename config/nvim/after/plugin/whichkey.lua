@@ -88,17 +88,15 @@ local mappings = {
 		"<cmd>Telescope buffers<cr>",
 		"Buffers",
 	},
+	["e"] = { "<cmd>Telescope find_files<cr>", "Find Files" },
 	["w"] = { "<cmd>w<CR>", "Save" },
 	["q"] = { "<cmd>q<CR>", "Quit" },
 	["c"] = { "<cmd>bdelete<CR>", "Buffer Delete" },
 	["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
 	["f"] = {
-		"<cmd>Telescope find_files<cr>",
-		"Find files",
+		"<cmd>lua require 'telescope'.extensions.live_grep_args.live_grep_args()<cr>",
+		"Find Text",
 	},
-	-- ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
-	["F"] = { "<cmd>Telescope live_grep <cr>", "Find Text" },
-	-- ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
 
 	p = {
 		name = "Packer",

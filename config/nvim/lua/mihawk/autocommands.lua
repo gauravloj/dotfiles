@@ -1,3 +1,19 @@
+local command = vim.api.nvim_create_user_command
+
+--   command('LspWorkspaceAdd', function()
+--     vim.lsp.buf.add_workspace_folder()
+--   end, {desc = 'Add folder to workspace'})
+--
+--   command('LspWorkspaceList', function()
+--     vim.notify(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+--   end, {desc = 'List workspace folders'})
+--
+--   command('LspWorkspaceRemove', function()
+--     vim.lsp.buf.remove_workspace_folder()
+--   end, {desc = 'Remove folder from workspace'})
+
+
+
 vim.cmd([[
   augroup _general_settings
     autocmd!
