@@ -19,15 +19,15 @@ local servers = {
   -- "clojure_lsp",
   "clangd",
   --"efm",
-  "emmet_ls",    -- https://github.com/aca/emmet-ls
-  "eslint",      -- https://github.com/hrsh7th/vscode-langservers-extracted
-  "html",        -- https://github.com/hrsh7th/vscode-langservers-extracted
-  -- "jsonls",      -- https://github.com/hrsh7th/vscode-langservers-extracted
-  "lua_ls",      -- https://github.com/luals/lua-language-server
-  "marksman",    -- https://github.com/artempyanykh/marksman
-  "pyright",     -- https://github.com/microsoft/pyright
+  "emmet_ls", -- https://github.com/aca/emmet-ls
+  "eslint",   -- https://github.com/hrsh7th/vscode-langservers-extracted
+  "html",     -- https://github.com/hrsh7th/vscode-langservers-extracted
+  "jsonls",   -- https://github.com/hrsh7th/vscode-langservers-extracted
+  "lua_ls",   -- https://github.com/luals/lua-language-server
+  "marksman", -- https://github.com/artempyanykh/marksman
+  "pyright",  -- https://github.com/microsoft/pyright
   -- "tailwindcss", -- https://github.com/tailwindlabs/tailwindcss-intellisense
-  "tsserver",    -- https://github.com/typescript-language-server/typescript-language-server
+  "tsserver", -- https://github.com/typescript-language-server/typescript-language-server
   -- "vimls",       -- https://github.com/iamcco/vim-language-server
   -- "zls",         -- https://github.com/zigtools/zls
 }

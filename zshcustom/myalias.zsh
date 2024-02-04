@@ -57,5 +57,15 @@ alias ping="ping -c 5"
 # alias chrompoc='"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --profile-directory="Profile 17"'
 
 # Directory shorthand
-hash -d ahn="/Users/mihawk/Desktop/open-projects/ahn_web"
-hash -d dotfiles="/Users/mihawk/workshop/dotfiles"
+hash -d ahn="$HOME/Desktop/open-projects/ahn_web"
+hash -d dotfiles="$HOME/workshop/dotfiles"
+
+
+# set nvim command inside its terminal buffer
+if [ -n "$NVIM" ]; then
+  if [ -x "$(command -v nvr)" ]; then
+   alias nvim=nvr
+  else
+    alias nvim='echo "No nesting!"' fi
+  fi
+fi
