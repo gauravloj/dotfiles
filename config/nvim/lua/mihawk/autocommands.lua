@@ -1,4 +1,4 @@
-local command = vim.api.nvim_create_user_command
+-- local command = vim.api.nvim_create_user_command
 
 --   command('LspWorkspaceAdd', function()
 --     vim.lsp.buf.add_workspace_folder()
@@ -11,6 +11,20 @@ local command = vim.api.nvim_create_user_command
 --   command('LspWorkspaceRemove', function()
 --     vim.lsp.buf.remove_workspace_folder()
 --   end, {desc = 'Remove folder from workspace'})
+
+local auto_cmd = vim.api.nvim_create_autocmd
+
+-- au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+auto_cmd('FileType', {
+  group = vim.api.nvim_create_augroup("_markdown", { clear = true }),
+  pattern = 'markdown',
+  callback = vim.schedule_wrap(function()
+    vim.bo.syntax = 'markdown'
+    vim.bo.wrap = true
+    vim.bo.spell = true
+  end)
+})
+
 
 
 
