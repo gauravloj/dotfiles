@@ -70,6 +70,11 @@ keymap("v", ">", ">gv", opts)
 -- Move text up and down
 keymap("v", "p", '"_dP', opts)
 
+-- surround in visual mode
+keymap("v", "[", "o<ESC>i[<ESC>gvo<ESC>la]<ESC>", opts)
+keymap("v", "\"", "o<ESC>i\"<ESC>gvo<ESC>la\"<ESC>", opts)
+
+
 -- Visual Block --
 -- Move text up and down
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
@@ -89,4 +94,4 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 
 -- Shrug ¯\_(ツ)_/¯
-vim.cmd.abbr {args = {"shrug" , "¯\\_(ツ)_/¯" }}
+vim.cmd.abbr { args = { "shrug", "¯\\_(ツ)_/¯" } }

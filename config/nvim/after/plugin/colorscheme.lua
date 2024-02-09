@@ -9,7 +9,7 @@ vim.cmd([[
 
 -- onedark sets the termguicolors option.
 if (os.getenv("COLORTERM") == "truecolor" or os.getenv("COLORTERM") == "24bit") then
-	vim.opt.termguicolors = true
+  vim.opt.termguicolors = true
 else
-	vim.opt.termguicolors = false
+  vim.opt.termguicolors = false
 end

@@ -28,7 +28,7 @@ function M.generate(colors)
 *color13: ${magenta}
 *color14: ${cyan}
 *color15: ${fg}
- 
+
 ]],
     colors
   )

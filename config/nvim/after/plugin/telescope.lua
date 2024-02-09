@@ -3,7 +3,7 @@ if not status_ok then
   return
 end
 
-local status_ok_lga, lga_actions  = pcall(require, "telescope-live-grep-args.actions")
+local status_ok_lga, lga_actions = pcall(require, "telescope-live-grep-args.actions")
 if not status_ok_lga then
   return
 end
@@ -98,7 +98,7 @@ telescope.setup {
       -- keymap.set("n", "<leader>gc", live_grep_args_shortcuts.grep_word_under_cursor)
       auto_quoting = true, -- enable/disable auto-quoting
       -- define mappings, e.g.
-      mappings = { -- extend mappings
+      mappings = {         -- extend mappings
         i = {
           ["<C-k>"] = lga_actions.quote_prompt(),
           -- ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
@@ -128,6 +128,5 @@ vim.api.nvim_set_keymap(
   "n",
   "<leader>/",
   "<CMD>lua require('telescope-live-grep-args.shortcuts').grep_word_under_cursor()<CR>",
- opts 
+  opts
 )
-

@@ -41,13 +41,13 @@ local function get_jdtls_paths()
 
   path.data_dir = vim.fn.stdpath('cache') .. '/nvim-jdtls'
 
-  local jdtls_install = '/opt/homebrew/Cellar/jdtls/1.31.0/libexec'
+  local jdtls_install = '/opt/homebrew/opt/jdtls/libexec'
 
-  path.java_agent = jdtls_install .. '/lombok.jar'
+  -- qath.java_agent = jdtls_install .. '/lombok.jar'
   path.launcher_jar = vim.fn.glob(jdtls_install .. '/plugins/org.eclipse.equinox.launcher_*.jar')
 
   if vim.fn.has('mac') == 1 then
-    path.platform_config = jdtls_install .. '/config_mac'
+    path.platform_config = jdtls_install .. '/config_mac_arm'
   elseif vim.fn.has('unix') == 1 then
     path.platform_config = jdtls_install .. '/config_linux'
   elseif vim.fn.has('win32') == 1 then
@@ -127,7 +127,7 @@ local function enable_codelens(bufnr)
 end
 
 local function enable_debugger(bufnr)
-  jdtls.setup_dap({ hotcodereplace = 'auto' })
+  vim.schedule(jdtls.setup_dap({ hotcodereplace = 'auto' }))
   -- local opts = {buffer = bufnr}
   -- vim.keymap.set('n', '<leader>df', "<cmd>lua require('jdtls').test_class()<cr>", opts)
   -- vim.keymap.set('n', '<leader>dn', "<cmd>lua require('jdtls').test_nearest_method()<cr>", opts)
@@ -326,4 +326,3 @@ vim.api.nvim_create_autocmd('FileType', {
   desc = 'Setup jdtls',
   callback = jdtls_setup,
 })
-

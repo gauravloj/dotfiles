@@ -18,10 +18,10 @@ function M.generate(colors)
   colors._style_name = nil
 
   local ret = "local colors = "
-    .. vim.inspect(colors)
-    .. "\n\nlocal highlights = "
-    .. vim.inspect(deepcopy(require("tokyonight.theme").setup().highlights))
-    .. "\n"
+      .. vim.inspect(colors)
+      .. "\n\nlocal highlights = "
+      .. vim.inspect(deepcopy(require("tokyonight.theme").setup().highlights))
+      .. "\n"
   return ret
 end
 

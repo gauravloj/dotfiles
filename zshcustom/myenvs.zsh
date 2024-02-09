@@ -18,7 +18,7 @@ export PATH="$PATH:$HOME/.docker/bin"
 export PATH="$PATH:$HOME/.bin"
 
 # Add all projects to CDPATH
-export CDPATH=~/workshop/playground/
+export CDPATH="$HOME/workshop/playground/:$HOME/Desktop/open-projects/"
 
 # Set default config directory
 export XDG_CONFIG_HOME="$HOME/workshop/dotfiles/config/"

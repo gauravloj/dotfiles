@@ -50,15 +50,15 @@ return packer.startup(function(use)
   use({
     "nvim-treesitter/nvim-treesitter",
     run = function()
-            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-            ts_update()
-        end,
+      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+      ts_update()
+    end,
   })
 
   -- Lsp
   use("neovim/nvim-lspconfig")
   use('mfussenegger/nvim-jdtls')
-  
+
   -- debugging
   use("mfussenegger/nvim-dap")
   use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
@@ -68,8 +68,8 @@ return packer.startup(function(use)
 
   -- Autocomplete
   use("hrsh7th/nvim-cmp")
-  use("hrsh7th/cmp-buffer")
   use("hrsh7th/cmp-path")
+  use("hrsh7th/cmp-nvim-lua")
   use("hrsh7th/cmp-nvim-lsp")
   use('saadparwaiz1/cmp_luasnip')
   use({
@@ -93,7 +93,7 @@ return packer.startup(function(use)
   })
 
   use({
-    "nvim-telescope/telescope-live-grep-args.nvim" ,
+    "nvim-telescope/telescope-live-grep-args.nvim",
     requires = {
       { "nvim-telescope/telescope.nvim" },
     },
