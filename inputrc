@@ -23,4 +23,4 @@ set page-completions off
 # disable alert bell
 set bell-style none
 
-set editing-mode vi
+# set editing-mode vi
