@@ -10,6 +10,8 @@ If you experience any errors while trying to install kickstart, run `:checkhealt
 
 require("mihawk.options")
 require("mihawk.keymaps")
+require("mihawk.config.scratch")
+require("mihawk.config.colorscheme")
 require("mihawk.lazy")
 require("mihawk.autocommands")
 
