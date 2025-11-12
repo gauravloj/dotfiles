@@ -19,22 +19,22 @@ local auto_cmd = vim.api.nvim_create_autocmd
 
 -- au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 auto_cmd("FileType", {
-	group = vim.api.nvim_create_augroup("_markdown", { clear = true }),
-	pattern = "markdown",
-	callback = vim.schedule_wrap(function()
-		vim.bo.syntax = "markdown"
-		vim.bo.wrap = true
-		vim.bo.spell = true
-	end),
+  group = vim.api.nvim_create_augroup("_markdown", { clear = true }),
+  pattern = "markdown",
+  callback = vim.schedule_wrap(function()
+    vim.bo.syntax = "markdown"
+    vim.wo.wrap = true
+    vim.wo.spell = true
+  end),
 })
 
 auto_cmd("FileType", {
-	group = vim.api.nvim_create_augroup("_git", { clear = true }),
-	pattern = "gitcommit",
-	callback = vim.schedule_wrap(function()
-		vim.bo.wrap = true
-		vim.bo.spell = true
-	end),
+  group = vim.api.nvim_create_augroup("_git", { clear = true }),
+  pattern = "gitcommit",
+  callback = vim.schedule_wrap(function()
+    vim.wo.wrap = true
+    vim.wo.spell = true
+  end),
 })
 
 -- auto_cmd('BufWritePre', {
@@ -53,11 +53,11 @@ auto_cmd("FileType", {
 --  augroup en
 -- ]]
 auto_cmd("BufWinEnter", {
-	group = vim.api.nvim_create_augroup("_zsh", { clear = true }),
-	pattern = "*.zsh",
-	callback = vim.schedule_wrap(function()
-		vim.bo.filetype = "sh"
-	end),
+  group = vim.api.nvim_create_augroup("_zsh", { clear = true }),
+  pattern = "*.zsh",
+  callback = vim.schedule_wrap(function()
+    vim.bo.filetype = "sh"
+  end),
 })
 
 -- [[
@@ -67,22 +67,22 @@ auto_cmd("BufWinEnter", {
 -- augroup end
 -- ]]
 auto_cmd("VimResized", {
-	group = vim.api.nvim_create_augroup("_auto_resize", { clear = true }),
-	pattern = "*",
-	callback = vim.schedule_wrap(function()
-		vim.cmd([[tabdo wincmd =]])
-	end),
+  group = vim.api.nvim_create_augroup("_auto_resize", { clear = true }),
+  pattern = "*",
+  callback = vim.schedule_wrap(function()
+    vim.cmd([[tabdo wincmd =]])
+  end),
 })
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.hl.on_yank()`
 auto_cmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("_highlight-yank", { clear = true }),
-	callback = function()
-		vim.hl.on_yank({ higroup = "Visual", timeout = 200 })
-	end,
+  desc = "Highlight when yanking (copying) text",
+  group = vim.api.nvim_create_augroup("_highlight-yank", { clear = true }),
+  callback = function()
+    vim.hl.on_yank({ higroup = "Visual", timeout = 200 })
+  end,
 })
 
 vim.cmd([[

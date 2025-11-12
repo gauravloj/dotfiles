@@ -50,33 +50,33 @@ return {
         group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 
 
-      callback = function(event)
-        local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
-        if client:supports_method('textDocument/implementation') then
-          -- Create a keymap for vim.lsp.buf.implementation ...
-        end
+        callback = function(event)
+          local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
+          if client:supports_method('textDocument/implementation') then
+            -- Create a keymap for vim.lsp.buf.implementation ...
+          end
 
-        -- Enable auto-completion. Note: Use CTRL-Y to select an item. |complete_CTRL-Y|
-        if client:supports_method('textDocument/completion') then
-          -- Optional: trigger autocompletion on EVERY keypress. May be slow!
-          -- local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
-          -- client.server_capabilities.completionProvider.triggerCharacters = chars
+          -- Enable auto-completion. Note: Use CTRL-Y to select an item. |complete_CTRL-Y|
+          if client:supports_method('textDocument/completion') then
+            -- Optional: trigger autocompletion on EVERY keypress. May be slow!
+            -- local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
+            -- client.server_capabilities.completionProvider.triggerCharacters = chars
 
-          vim.lsp.completion.enable(true, client.id, event.buf, {autotrigger = true})
-        end
+            vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
+          end
 
-        -- Auto-format ("lint") on save.
-        -- Usually not needed if server supports "textDocument/willSaveWaitUntil".
-        if not client:supports_method('textDocument/willSaveWaitUntil')
-            and client:supports_method('textDocument/formatting') then
-          vim.api.nvim_create_autocmd('BufWritePre', {
-            group = vim.api.nvim_create_augroup('my.lsp', {clear=false}),
-            buffer = event.buf,
-            callback = function()
-              vim.lsp.buf.format({ bufnr = event.buf, id = client.id, timeout_ms = 1000 })
-            end,
-          })
-        end
+          -- Auto-format ("lint") on save.
+          -- Usually not needed if server supports "textDocument/willSaveWaitUntil".
+          if not client:supports_method('textDocument/willSaveWaitUntil')
+              and client:supports_method('textDocument/formatting') then
+            vim.api.nvim_create_autocmd('BufWritePre', {
+              group = vim.api.nvim_create_augroup('my.lsp', { clear = false }),
+              buffer = event.buf,
+              callback = function()
+                vim.lsp.buf.format({ bufnr = event.buf, id = client.id, timeout_ms = 1000 })
+              end,
+            })
+          end
 
           -- NOTE: Remember that Lua is a real programming language, and as such it is possible
           -- to define small helper and utility functions so you don't have to repeat yourself.
@@ -85,7 +85,8 @@ return {
           -- for LSP related items. It sets the mode, buffer and description for us each time.
           local map = function(keys, func, desc, mode)
             mode = mode or "n"
-            vim.keymap.set(mode, keys, func, { noremap = true, silent = true, buffer = event.buf, desc = "LSP: " .. desc })
+            vim.keymap.set(mode, keys, func,
+              { noremap = true, silent = true, buffer = event.buf, desc = "LSP: " .. desc })
           end
 
           -- Rename the variable under your cursor.
@@ -162,145 +163,143 @@ return {
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if
-            client
-            and client_supports_method(
-              client,
-              vim.lsp.protocol.Methods.textDocument_documentHighlight,
-              event.buf
-            )
-            then
-              local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
-              vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-                buffer = event.buf,
-                group = highlight_augroup,
-                callback = vim.lsp.buf.document_highlight,
-              })
+              client
+              and client_supports_method(
+                client,
+                vim.lsp.protocol.Methods.textDocument_documentHighlight,
+                event.buf
+              )
+          then
+            local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
+            vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+              buffer = event.buf,
+              group = highlight_augroup,
+              callback = vim.lsp.buf.document_highlight,
+            })
 
-              vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-                buffer = event.buf,
-                group = highlight_augroup,
-                callback = vim.lsp.buf.clear_references,
-              })
+            vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+              buffer = event.buf,
+              group = highlight_augroup,
+              callback = vim.lsp.buf.clear_references,
+            })
 
-              vim.api.nvim_create_autocmd("LspDetach", {
-                group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
-                callback = function(event2)
-                  vim.lsp.buf.clear_references()
-                  vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = event2.buf })
-                end,
-              })
-            end
+            vim.api.nvim_create_autocmd("LspDetach", {
+              group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
+              callback = function(event2)
+                vim.lsp.buf.clear_references()
+                vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = event2.buf })
+              end,
+            })
+          end
 
-            -- The following code creates a keymap to toggle inlay hints in your
-            -- code, if the language server you are using supports them
-            --
-            -- This may be unwanted, since they displace some of your code
-            if
+          -- The following code creates a keymap to toggle inlay hints in your
+          -- code, if the language server you are using supports them
+          --
+          -- This may be unwanted, since they displace some of your code
+          if
               client
               and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf)
-              then
-                map("<leader>th", function()
-                  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
-                end, "[T]oggle Inlay [H]ints")
-              end
-            end,
-          })
+          then
+            map("<leader>th", function()
+              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
+            end, "[T]oggle Inlay [H]ints")
+          end
+        end,
+      })
 
-          -- Diagnostic Config
-          -- See :help vim.diagnostic.Opts
-          vim.diagnostic.config({
-            severity_sort = true,
-            float = { border = "rounded", source = "if_many" },
-            underline = { severity = vim.diagnostic.severity.ERROR },
-            signs = vim.g.have_nerd_font and {
-              text = {
-                [vim.diagnostic.severity.ERROR] = "󰅚 ",
-                [vim.diagnostic.severity.WARN] = "󰀪 ",
-                [vim.diagnostic.severity.INFO] = "󰋽 ",
-                [vim.diagnostic.severity.HINT] = "󰌶 ",
-              },
-            } or {},
-            virtual_text = {
-              source = "if_many",
-              spacing = 2,
-              format = function(diagnostic)
-                local diagnostic_message = {
-                  [vim.diagnostic.severity.ERROR] = diagnostic.message,
-                  [vim.diagnostic.severity.WARN] = diagnostic.message,
-                  [vim.diagnostic.severity.INFO] = diagnostic.message,
-                  [vim.diagnostic.severity.HINT] = diagnostic.message,
-                }
-                return diagnostic_message[diagnostic.severity]
-              end,
-            },
-          })
-
-          -- LSP servers and clients are able to communicate to each other what features they support.
-          --  By default, Neovim doesn't support everything that is in the LSP specification.
-          --  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
-          --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
-          -- local capabilities = require("blink.cmp").get_lsp_capabilities()
-          -- local cmp_nvim_lsp = require("cmp_nvim_lsp")
-          -- local capabilities = cmp_nvim_lsp.default_capabilities({snippetSupport = true})
-
-
-          -- Enable the following language servers
-          --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-          --
-          --  Add any additional override configuration in the following tables. Available keys are:
-          --  - cmd (table): Override the default command used to start the server
-          --  - filetypes (table): Override the default list of associated filetypes for the server
-          --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-          --  - settings (table): Override the default settings passed when initializing the server.
-          --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-          local servers = { 'pylsp' , 'lua_ls'  }
-
-
-          local ensure_installed = servers or {}
-          --  vim.list_extend(ensure_installed, {
-            --  "stylua", -- Used to format Lua code
-            --  })
-            require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
-
-
-            for _, server_name in pairs(servers) do
-              local has_custom_opts, server = pcall(require, "mihawk.lsp.settings." .. server_name)
-              if not has_custom_opts then 
-                server = {}
-              end
-
-              -- local server = servers[server_name] or {}
-              -- This handles overriding only values explicitly passed
-              -- by the server configuration above. Useful when disabling
-              -- certain features of an LSP (for example, turning off formatting for ts_ls)
-              vim.lsp.config(server_name,server)
-              vim.lsp.enable(server_name)
-            end
-
-
+      -- Diagnostic Config
+      -- See :help vim.diagnostic.Opts
+      vim.diagnostic.config({
+        severity_sort = true,
+        float = { border = "rounded", source = "if_many" },
+        underline = { severity = vim.diagnostic.severity.ERROR },
+        signs = vim.g.have_nerd_font and {
+          text = {
+            [vim.diagnostic.severity.ERROR] = "󰅚 ",
+            [vim.diagnostic.severity.WARN] = "󰀪 ",
+            [vim.diagnostic.severity.INFO] = "󰋽 ",
+            [vim.diagnostic.severity.HINT] = "󰌶 ",
+          },
+        } or {},
+        virtual_text = {
+          source = "if_many",
+          spacing = 2,
+          format = function(diagnostic)
+            local diagnostic_message = {
+              [vim.diagnostic.severity.ERROR] = diagnostic.message,
+              [vim.diagnostic.severity.WARN] = diagnostic.message,
+              [vim.diagnostic.severity.INFO] = diagnostic.message,
+              [vim.diagnostic.severity.HINT] = diagnostic.message,
+            }
+            return diagnostic_message[diagnostic.severity]
           end,
         },
-      }
+      })
 
-      --       local capabilities = require('blink.cmp').get_lsp_capabilities()
-      --       vim.lsp.config('lua_ls', { capabilites = capabilities })
+      -- LSP servers and clients are able to communicate to each other what features they support.
+      --  By default, Neovim doesn't support everything that is in the LSP specification.
+      --  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
+      --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
+      -- local capabilities = require("blink.cmp").get_lsp_capabilities()
+      -- local cmp_nvim_lsp = require("cmp_nvim_lsp")
+      -- local capabilities = cmp_nvim_lsp.default_capabilities({snippetSupport = true})
+
+
+      -- Enable the following language servers
+      --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
       --
-      --       vim.api.nvim_create_autocmd('LspAttach', {
-        --         callback = function(args)
-          --           local c = vim.lsp.get_client_by_id(args.data.client_id)
-          --           if not c then return end
-          --
-          --           if vim.bo.filetype == "lua" then
-          --             -- Format the current buffer on save
-          --             vim.api.nvim_create_autocmd('BufWritePre', {
-            --               buffer = args.buf,
-            --               callback = function()
-              --                 vim.lsp.buf.format({ bufnr = args.buf, id = c.id })
-              --               end,
-              --             })
-              --           end
-              --         end,
-              --       })
-              --     end,
-              --   }
-              -- }
+      --  Add any additional override configuration in the following tables. Available keys are:
+      --  - cmd (table): Override the default command used to start the server
+      --  - filetypes (table): Override the default list of associated filetypes for the server
+      --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
+      --  - settings (table): Override the default settings passed when initializing the server.
+      --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+      local servers = { 'pyright', 'lua_ls' }
+
+
+      local ensure_installed = servers or {}
+      --  vim.list_extend(ensure_installed, {
+      --  "stylua", -- Used to format Lua code
+      --  })
+      require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+
+
+      for _, server_name in pairs(servers) do
+        local has_custom_opts, server = pcall(require, "mihawk.lsp.settings." .. server_name)
+        if not has_custom_opts then
+          server = {}
+        end
+
+        -- local server = servers[server_name] or {}
+        -- This handles overriding only values explicitly passed
+        -- by the server configuration above. Useful when disabling
+        -- certain features of an LSP (for example, turning off formatting for ts_ls)
+        vim.lsp.config(server_name, server)
+        vim.lsp.enable(server_name)
+      end
+    end,
+  },
+}
+
+--       local capabilities = require('blink.cmp').get_lsp_capabilities()
+--       vim.lsp.config('lua_ls', { capabilites = capabilities })
+--
+--       vim.api.nvim_create_autocmd('LspAttach', {
+--         callback = function(args)
+--           local c = vim.lsp.get_client_by_id(args.data.client_id)
+--           if not c then return end
+--
+--           if vim.bo.filetype == "lua" then
+--             -- Format the current buffer on save
+--             vim.api.nvim_create_autocmd('BufWritePre', {
+--               buffer = args.buf,
+--               callback = function()
+--                 vim.lsp.buf.format({ bufnr = args.buf, id = c.id })
+--               end,
+--             })
+--           end
+--         end,
+--       })
+--     end,
+--   }
+-- }
