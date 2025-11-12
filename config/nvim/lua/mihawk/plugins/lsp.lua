@@ -2,20 +2,8 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      -- "saghen/blink.cmp",
-      {
-        -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
-        -- used for completion, annotations and signatures of Neovim apis
-        "folke/lazydev.nvim",
-        ft = "lua",
-        opts = {
-          library = {
-            -- Load luvit types when the `vim.uv` word is found
-            { path = "luvit-meta/library", words = { "vim%.uv" } },
-          },
-        },
-      },
-      "hrsh7th/cmp-nvim-lsp",
+      "saghen/blink.cmp",
+      -- "hrsh7th/cmp-nvim-lsp",
       { "mason-org/mason.nvim", opts = {} },
       "mason-org/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -61,7 +49,35 @@ return {
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 
-        callback = function(event)
+
+      callback = function(event)
+        local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
+        if client:supports_method('textDocument/implementation') then
+          -- Create a keymap for vim.lsp.buf.implementation ...
+        end
+
+        -- Enable auto-completion. Note: Use CTRL-Y to select an item. |complete_CTRL-Y|
+        if client:supports_method('textDocument/completion') then
+          -- Optional: trigger autocompletion on EVERY keypress. May be slow!
+          -- local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
+          -- client.server_capabilities.completionProvider.triggerCharacters = chars
+
+          vim.lsp.completion.enable(true, client.id, event.buf, {autotrigger = true})
+        end
+
+        -- Auto-format ("lint") on save.
+        -- Usually not needed if server supports "textDocument/willSaveWaitUntil".
+        if not client:supports_method('textDocument/willSaveWaitUntil')
+            and client:supports_method('textDocument/formatting') then
+          vim.api.nvim_create_autocmd('BufWritePre', {
+            group = vim.api.nvim_create_augroup('my.lsp', {clear=false}),
+            buffer = event.buf,
+            callback = function()
+              vim.lsp.buf.format({ bufnr = event.buf, id = client.id, timeout_ms = 1000 })
+            end,
+          })
+        end
+
           -- NOTE: Remember that Lua is a real programming language, and as such it is possible
           -- to define small helper and utility functions so you don't have to repeat yourself.
           --
@@ -224,8 +240,8 @@ return {
           --  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
           --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
           -- local capabilities = require("blink.cmp").get_lsp_capabilities()
-          local cmp_nvim_lsp = require("cmp_nvim_lsp")
-          local capabilities = cmp_nvim_lsp.default_capabilities({snippetSupport = true})
+          -- local cmp_nvim_lsp = require("cmp_nvim_lsp")
+          -- local capabilities = cmp_nvim_lsp.default_capabilities({snippetSupport = true})
 
 
           -- Enable the following language servers
@@ -248,21 +264,17 @@ return {
 
 
             for _, server_name in pairs(servers) do
-              local server = {
-                capabilities = capabilities,
-              }
-              local has_custom_opts, server_custom_opts = pcall(require, "mihawk.lsp.settings." .. server_name)
-
-              if has_custom_opts then
-                -- opts = vim.tbl_deep_extend("keep", server_custom_opts, opts)
-                server = vim.tbl_deep_extend("keep", server_custom_opts, server)
+              local has_custom_opts, server = pcall(require, "mihawk.lsp.settings." .. server_name)
+              if not has_custom_opts then 
+                server = {}
               end
+
               -- local server = servers[server_name] or {}
               -- This handles overriding only values explicitly passed
               -- by the server configuration above. Useful when disabling
               -- certain features of an LSP (for example, turning off formatting for ts_ls)
-              server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
               vim.lsp.config(server_name,server)
+              vim.lsp.enable(server_name)
             end
 
 
