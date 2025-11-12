@@ -10,10 +10,13 @@ If you experience any errors while trying to install kickstart, run `:checkhealt
 
 require("mihawk.options")
 require("mihawk.keymaps")
-require("mihawk.config.scratch")
-require("mihawk.config.colorscheme")
+-- require("mihawk.config.scratch")
+require("mihawk.config")
 require("mihawk.lazy")
 require("mihawk.autocommands")
+
+
+-- NOTE: any lua file stored in $XDG_CONFIG_HOME/plugin are sourced automatically by lazy.vim
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

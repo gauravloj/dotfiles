@@ -1,0 +1,2 @@
+require('mihawk.config.colorscheme')
+
